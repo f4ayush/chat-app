@@ -1,4 +1,5 @@
 
+import React from 'react'
 import MyMessage from './MyMessage'
 import TheirMessage from './TheirMessage'
 import MessageForm from './MessageForm'
@@ -8,18 +9,18 @@ export default function Chatfeed(props) {
     const chat = chats && chats[activeChat]
     const renderMessages = () => {
         const keys = Object.keys(messages)
-        keys.map((key, index) => {
+        return keys.map((key, index) => {
             const message = messages[key]
-            const isMyMessage = userName === message.sender.userName
-            const isLastMessage = index === 0 ? null : keys[index - 1]
+            const isMyMessage = userName === message.sender.username
+            const lastMessageKey = index === 0 ? null : keys[index - 1]
 
             return (
                 <div key={`msg_${index}`} style={{ width: '100%' }}>
                     <div className="message-block">
                         {
                             isMyMessage
-                                ? <MyMessage />
-                                : <TheirMessage />
+                                ? <MyMessage message={message} />
+                                : <TheirMessage message={message} lastMessage={messages[lastMessageKey]} />
                         }
                     </div>
                     <div className="read-receipts" style={{ marginRight: isMyMessage ? "18px" : "0px", marginLeft: isMyMessage ? '0px' : '68px' }}>
@@ -29,7 +30,7 @@ export default function Chatfeed(props) {
             )
         })
     }
-    console.log(chat)
+    // console.log(props)
 
     if (!chat) return ('Loading....')
     return (
