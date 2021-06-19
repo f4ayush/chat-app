@@ -6,7 +6,7 @@ export default function TheirMessage({ lastMessage, message }) {
         <div className='message-row'>
             {
                 isFirstMessageByUser &&
-                <div className='message-avatar' style={{ background: `url(${message?.sender?.avatar})` }} />
+                <div className='message-avatar' style={{ backgroundImage: `url(${message?.sender?.avatar})` }} />
             }
 
             {
