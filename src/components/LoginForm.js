@@ -16,6 +16,7 @@ export default function LoginForm() {
         }
         catch (error) {
             seterror("Oops!, Wrong Credentials")
+            console.log(error)
 
         }
 
